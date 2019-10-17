@@ -182,18 +182,20 @@ class Tag extends Driver {
      * 目前支持公众号为用户打上最多20个标签。
      */
     public function batchTagToUser($openIds,$tagId){
-        $postData = ['openid_list'=>$openIds,'tag_id'=>$tagId];
+        $postData = ['openid_list'=>$openIds,'tagid'=>$tagId];
 
         $response = $this->post(self::API_BATCH_TAG_URL."?access_token={$this->accessToken}", $postData)
             ->setFormat(Client::FORMAT_JSON)->send();
 
         $data = $response->getData();
 
-        return [ $postData, $data ];
-
         if(isset($data['errcode']) && $data['errcode'] == 0){
             return true;
         }else{
+            if ( empty(self::$errors[$data['errcode']]) ){
+                throw new Exception($data);
+            }
+
             throw new Exception(self::$errors[$data['errcode']],$data['errcode']);
         }
     }
@@ -202,7 +204,7 @@ class Tag extends Driver {
      * 批量为用户取消标签
      */
     public function unBatchTagFromUser($openIds,$tagId){
-        $response = $this->post(self::API_UN_BATCH_TAG_URL."?access_token={$this->accessToken}",['openid_list'=>$openIds,'tag_id'=>$tagId])
+        $response = $this->post(self::API_UN_BATCH_TAG_URL."?access_token={$this->accessToken}",['openid_list'=>$openIds,'tagid'=>$tagId])
             ->setFormat(Client::FORMAT_JSON)->send();
 
         $data = $response->getData();
@@ -210,6 +212,10 @@ class Tag extends Driver {
         if(isset($data['errcode']) && $data['errcode'] == 0){
             return true;
         }else{
+            if ( empty(self::$errors[$data['errcode']]) ){
+                throw new Exception($data);
+            }
+
             throw new Exception(self::$errors[$data['errcode']],$data['errcode']);
         }
     }
