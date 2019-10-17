@@ -1,25 +1,25 @@
 <?php
 /*
- * This file is part of the abei2017/yii2-wx
+ * This file is part of the rockyuan/yii2-wx3
  *
- * (c) abei <abei@nai8.me>
+ * 
  *
  * This source file is subject to the MIT license that is bundled
  * with this source code in the file LICENSE.
  */
 
-namespace abei2017\wx\mp\server;
+namespace rockyuan\wx3\mp\server;
 
-use abei2017\wx\helpers\Xml;
+use rockyuan\wx3\helpers\Xml;
 use Yii;
-use abei2017\wx\core\Driver;
+use rockyuan\wx3\core\Driver;
 use yii\base\Exception;
-use abei2017\wx\mp\message\Text;
-use abei2017\wx\mp\encryptor\Encryptor;
+use rockyuan\wx3\mp\message\Text;
+use rockyuan\wx3\mp\encryptor\Encryptor;
 
 /**
  * 服务器类
- * @package abei2017\wx\server
+ * @package rockyuan\wx3\server
  * @author abei<abei@nai8.me>
  * @link https://nai8.me/yii2wx
  */

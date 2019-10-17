@@ -1,23 +1,23 @@
 <?php
 
 /*
- * This file is part of the abei2017/yii2-wx.
+ * This file is part of the rockyuan/yii2-wx3.
  *
- * (c) abei <abei@nai8.me>
+ * 
  *
  * This source file is subject to the MIT license that is bundled
  * with this source code in the file LICENSE.
  */
 
-namespace abei2017\wx\core;
+namespace rockyuan\wx3\core;
 
-use abei2017\wx\helpers\Util;
+use rockyuan\wx3\helpers\Util;
 use yii\base\Component;
 
 /**
  * 接口类
  * 该类主要抽象出每个接口类必须的几个属性
- * @package abei2017\wx\core
+ * @package rockyuan\wx3\core
  */
 class Driver extends Component {
 

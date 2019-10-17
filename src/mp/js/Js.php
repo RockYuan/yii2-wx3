@@ -1,22 +1,22 @@
 <?php
 
 /*
- * This file is part of the abei2017/yii2-wx
+ * This file is part of the rockyuan/yii2-wx3
  *
- * (c) abei <abei@nai8.me>
+ * 
  *
  * This source file is subject to the MIT license that is bundled
  * with this source code in the file LICENSE.
  */
 
-namespace abei2017\wx\mp\js;
+namespace rockyuan\wx3\mp\js;
 
-use abei2017\wx\core\Driver;
+use rockyuan\wx3\core\Driver;
 use yii\helpers\Json;
 use yii\helpers\Url;
 use Yii;
 use yii\httpclient\Client;
-use abei2017\wx\core\AccessToken;
+use rockyuan\wx3\core\AccessToken;
 
 /**
  * Js
@@ -24,7 +24,7 @@ use abei2017\wx\core\AccessToken;
  *
  * @author abei<abei@nai8.me>
  * @link https://nai8.me/yii2wx
- * @package abei2017\wx\mp\js
+ * @package rockyuan\wx3\mp\js
  */
 class Js extends Driver {
 
@@ -43,9 +43,9 @@ class Js extends Driver {
      * @param boolean $debug 是否启动调试模式
      * @return mixed
      */
-    public function buildConfig($apis = [],$debug = false){
+    public function buildConfig($url = '', $apis = [],$debug = false){
 
-        $signPackage = $this->signature();
+        $signPackage = $this->signature($url);
         $config = array_merge(['debug'=>$debug],$signPackage,['jsApiList'=>$apis]);
 
         return Json::encode($config);
@@ -57,9 +57,12 @@ class Js extends Driver {
      *
      * @return array
      */
-    public function signature(){
+    public function signature($url = ''){
 
-        $url = Url::current([],true);
+        if (empty($url)){
+            $url = Url::current([],true);
+        }
+        
         $nonce = Yii::$app->security->generateRandomString(32);
         $timestamp = time();
         $ticket = $this->ticket();

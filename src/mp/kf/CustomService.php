@@ -1,20 +1,20 @@
 <?php
 
 /*
- * This file is part of the abei2017/yii2-wx
+ * This file is part of the rockyuan/yii2-wx3
  *
- * (c) abei <abei@nai8.me>
+ * 
  *
  * This source file is subject to the MIT license that is bundled
  * with this source code in the file LICENSE.
  */
 
-namespace abei2017\wx\mp\kf;
+namespace rockyuan\wx3\mp\kf;
 
 use yii\httpclient\Client;
-use abei2017\wx\core\Driver;
-use abei2017\wx\core\AccessToken;
-use abei2017\wx\core\Exception;
+use rockyuan\wx3\core\Driver;
+use rockyuan\wx3\core\AccessToken;
+use rockyuan\wx3\core\Exception;
 
 /**
  * CustomService
@@ -22,7 +22,7 @@ use abei2017\wx\core\Exception;
  *
  * @author abei<abei@nai8.me>
  * @link https://nai8.me/yii2wx
- * @package abei2017\wx\mp\kf
+ * @package rockyuan\wx3\mp\kf
  */
 class CustomService extends Driver {
 
@@ -49,7 +49,7 @@ class CustomService extends Driver {
 
         $params = array_merge(['touser'=>$openId,'msgtype'=>$type],[$type=>$data],$extra);
 
-        $this->httpClient->formatters = ['uncodeJson'=>'abei2017\wx\helpers\JsonFormatter'];
+        $this->httpClient->formatters = ['uncodeJson'=>'rockyuan\wx3\helpers\JsonFormatter'];
         $response = $this->post(self::API_SEND_URL."?access_token={$this->accessToken}",$params)->setFormat('uncodeJson')->send();
 
         if($response->isOk == false){

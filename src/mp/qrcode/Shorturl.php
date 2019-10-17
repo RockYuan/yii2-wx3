@@ -1,24 +1,24 @@
 <?php
 /*
- * This file is part of the abei2017/yii2-wx
+ * This file is part of the rockyuan/yii2-wx3
  *
- * (c) abei <abei@nai8.me>
+ * 
  *
  * This source file is subject to the MIT license that is bundled
  * with this source code in the file LICENSE.
  */
 
-namespace abei2017\wx\mp\qrcode;
+namespace rockyuan\wx3\mp\qrcode;
 
-use abei2017\wx\core\Driver;
-use abei2017\wx\core\AccessToken;
+use rockyuan\wx3\core\Driver;
+use rockyuan\wx3\core\AccessToken;
 use yii\httpclient\Client;
 
 /**
  * 长链接转短地址助手
  * @abei<abei@nai8.me>
  * @link https://nai8.me/yii2wx
- * @package abei2017\wx\mp\qrcode
+ * @package rockyuan\wx3\mp\qrcode
  */
 class Shorturl extends Driver {
 

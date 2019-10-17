@@ -1,8 +1,8 @@
 <?php
 
-namespace abei2017\wx\mp\message;
+namespace rockyuan\wx3\mp\message;
 
-use abei2017\wx\core\Driver;
+use rockyuan\wx3\core\Driver;
 
 class Image extends Driver {
 

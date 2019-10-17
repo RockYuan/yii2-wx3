@@ -1,24 +1,24 @@
 <?php
 /*
- * This file is part of the abei2017/yii2-wx
+ * This file is part of the rockyuan/yii2-wx3
  *
- * (c) abei <abei@nai8.me>
+ * 
  *
  * This source file is subject to the MIT license that is bundled
  * with this source code in the file LICENSE.
  */
 
-namespace abei2017\wx\mp\oauth;
+namespace rockyuan\wx3\mp\oauth;
 
-use abei2017\wx\core\Driver;
+use rockyuan\wx3\core\Driver;
 use Yii;
 use yii\httpclient\Client;
-use abei2017\wx\core\Exception;
+use rockyuan\wx3\core\Exception;
 
 /**
  * web网页授权
  *
- * @package abei2017\wx\mp\oauth
+ * @package rockyuan\wx3\mp\oauth
  * @author abei<abei@nai8.me>
  * @link http://nai8.me/yii2wx
  */
@@ -50,6 +50,22 @@ class OAuth extends Driver {
     public function send(){
         $url = self::API_AUTHORIZE_URL."?appid={$this->conf['app_id']}&redirect_uri={$this->conf['oauth']['callback']}&response_type=code&scope={$this->conf['oauth']['scopes']}&state=STATE#wechat_redirect";
         header("location:{$url}");
+    }
+
+    /**
+     * getUrl
+     * 
+     * 获得认证code的url, 用于送回前端, 由前端重定向
+     *
+     * @return void
+     *
+     * @author Rock <RockYuan@gmail.com>
+     * @since 20190921
+     */
+    public function getUrl(){
+        $url = self::API_AUTHORIZE_URL."?appid={$this->conf['app_id']}&redirect_uri={$this->conf['oauth']['callback']}&response_type=code&scope={$this->conf['oauth']['scopes']}&state=STATE#wechat_redirect";
+
+        return $url;
     }
 
     /**

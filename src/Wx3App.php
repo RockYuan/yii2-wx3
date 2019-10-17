@@ -20,11 +20,10 @@ use yii\httpclient\Client;
  * bootstrap
  * 此类负责模块其他类的驱动以及相关变量的初始化
  *
- * @link https://nai8.me/study/yii2wx.html
- * @author abei<abei@nai8.me>
+ * @author RockYuan
  * @package rockyuan\wx3
  */
-class Application extends Component {
+class Wx3App extends Component {
 
     /**
      * yii2-wx配置

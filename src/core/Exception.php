@@ -1,24 +1,21 @@
 <?php
 /*
- * This file is part of the abei2017/yii2-wx.
- *
- * (c) abei <abei@nai8.me>
  *
  * This source file is subject to the MIT license that is bundled
  * with this source code in the file LICENSE.
  */
 
-namespace abei2017\wx\core;
+namespace rockyuan\wx3\core;
 
 /**
  * Exception
- * yii2-wx专属异常类
- * @author abei<abei@nai8.me>
+ * yii2-wx3专属异常类
+ * 
  */
 class Exception extends \yii\base\Exception {
 
     public function getName(){
-        return '微信SDK（abei2017/yii2-wx）';
+        return 'Yii2-wx3';
     }
 
 }

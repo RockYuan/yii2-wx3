@@ -1,19 +1,19 @@
 <?php
 /*
- * This file is part of the abei2017/yii2-wx
+ * This file is part of the rockyuan/yii2-wx3
  *
- * (c) abei <abei@nai8.me>
+ * 
  *
  * This source file is subject to the MIT license that is bundled
  * with this source code in the file LICENSE.
  */
 
-namespace abei2017\wx\mp\payment;
+namespace rockyuan\wx3\mp\payment;
 
 use yii\base\Component;
-use abei2017\wx\helpers\Xml;
-use abei2017\wx\helpers\Util;
-use abei2017\wx\core\Exception;
+use rockyuan\wx3\helpers\Xml;
+use rockyuan\wx3\helpers\Util;
+use rockyuan\wx3\core\Exception;
 
 /**
  * Notify
@@ -21,7 +21,7 @@ use abei2017\wx\core\Exception;
  *
  * @author abei<abei@nai8.me>
  * @link http://nai8.me/yii2wx
- * @package abei2017\wx\mp\payment
+ * @package rockyuan\wx3\mp\payment
  */
 class Notify extends Component {
 

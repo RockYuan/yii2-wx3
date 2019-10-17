@@ -6,13 +6,13 @@
  * Time: 5:45 PM
  */
 
-namespace abei2017\wx\mini\custom;
+namespace rockyuan\wx3\mini\custom;
 
-use abei2017\wx\helpers\Xml;
+use rockyuan\wx3\helpers\Xml;
 use Yii;
-use abei2017\wx\core\Driver;
+use rockyuan\wx3\core\Driver;
 use yii\base\Exception;
-use abei2017\wx\mini\encryptor\Encryptor;
+use rockyuan\wx3\mini\encryptor\Encryptor;
 
 class Server extends Driver {
 

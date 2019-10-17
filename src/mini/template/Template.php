@@ -1,16 +1,16 @@
 <?php
 /*
- * This file is part of the abei2017/yii2-wx
+ * This file is part of the rockyuan/yii2-wx3
  *
- * (c) abei <abei@nai8.me>
+ * 
  *
  * This source file is subject to the MIT license that is bundled
  * with this source code in the file LICENSE.
  */
 
-namespace abei2017\wx\mini\template;
+namespace rockyuan\wx3\mini\template;
 
-use abei2017\wx\core\Driver;
+use rockyuan\wx3\core\Driver;
 use Yii;
 use yii\httpclient\Client;
 
@@ -19,7 +19,7 @@ use yii\httpclient\Client;
  * 小程序模板消息
  * @author abei<abei@nai8.me>
  * @link https://nai8.me/yii2wx
- * @package abei2017\wx\mini\template
+ * @package rockyuan\wx3\mini\template
  */
 class Template extends Driver {
 
