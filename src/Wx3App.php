@@ -50,6 +50,11 @@ class Wx3App extends Component {
             'accessToken'=>'rockyuan\wx3\core\AccessToken'
         ],
 
+        'third'=>[
+            'accessToken'=>'rockyuan\wx3\third\core\AccessToken',
+            'server'=>'rockyuan\wx3\third\server\Server',    // 服务接口
+        ],
+
         'mp'=>[
             'accessToken'=>'rockyuan\wx3\mp\core\AccessToken',
             'base'=>'rockyuan\wx3\mp\core\Base',    // 二维码
