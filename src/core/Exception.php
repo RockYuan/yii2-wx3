@@ -12,7 +12,7 @@ namespace rockyuan\wx3\core;
  * yii2-wx3专属异常类
  * 
  */
-class Exception extends \yii\base\Exception {
+class Exception extends \yii\base\ErrorException {
 
     public function getName(){
         return 'Yii2-wx3';

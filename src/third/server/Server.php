@@ -10,10 +10,10 @@
 
 namespace rockyuan\wx3\third\server;
 
-use rockyuan\wx3\helpers\Xml;
 use Yii;
+use rockyuan\wx3\core\Exception;
+use rockyuan\wx3\helpers\Xml;
 use rockyuan\wx3\core\Driver;
-use yii\base\Exception;
 use rockyuan\wx3\mp\message\Text;
 use rockyuan\wx3\mp\encryptor\Encryptor;
 
@@ -113,8 +113,7 @@ class Server extends Driver {
             return false;
         }
 
-
-        $type = $message['MsgType'];
+        $type = ($message['InfoType'] ? $message['InfoType'] : $message['MsgType']);
         $response = null;
 
         if($this->messageFilter && $type){
@@ -126,7 +125,7 @@ class Server extends Driver {
 
     public function setMessageHandler($callback,$option = self::ALL_MSG){
         if(!is_callable($callback)){
-            throw new Exception('error');
+            throw new Exception('消息处理回调函数错误');
         }
 
         $this->messageHandler = $callback;

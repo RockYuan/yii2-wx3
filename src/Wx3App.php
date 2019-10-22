@@ -51,8 +51,10 @@ class Wx3App extends Component {
         ],
 
         'third'=>[
-            'accessToken'=>'rockyuan\wx3\third\core\AccessToken',
+            'componentAccessToken'=>'rockyuan\wx3\third\core\ComponentAccessToken',
+            'authorization'=>'rockyuan\wx3\third\core\Authorization',
             'server'=>'rockyuan\wx3\third\server\Server',    // 服务接口
+            'customService'=>'rockyuan\wx3\third\kf\CustomService',//  群发
         ],
 
         'mp'=>[
