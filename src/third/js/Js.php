@@ -9,31 +9,33 @@
  * with this source code in the file LICENSE.
  */
 
-namespace rockyuan\wx3\mp\js;
+namespace rockyuan\wx3\third\js;
 
+use Yii;
 use rockyuan\wx3\core\Driver;
 use yii\helpers\Json;
 use yii\helpers\Url;
-use Yii;
 use yii\httpclient\Client;
-use rockyuan\wx3\core\AccessToken;
+use rockyuan\wx3\core\Exception;
+use rockyuan\wx3\third\core\Authorization;
 
 /**
  * Js
  * 该助手类主要负责微信公众号JSSDK功能
  *
- * @author abei<abei@nai8.me>
- * @link https://nai8.me/yii2wx
- * @package rockyuan\wx3\mp\js
+ * @package rockyuan\wx3\third\js
  */
 class Js extends Driver {
 
-    protected $cacheKey = 'wx-mp-js-ticket';
-
     const API_TICKET = 'https://api.weixin.qq.com/cgi-bin/ticket/getticket';
+
+    private $accessToken;
+
+    private $redisPrefix = 'wx3.';
 
     public function init(){
         parent::init();
+        $this->accessToken = (new Authorization(['conf'=>$this->conf,'httpClient'=>$this->httpClient]))->getAuthToken($this->extra['appid']);
     }
 
     /**
@@ -71,7 +73,7 @@ class Js extends Driver {
         $ticket = $this->ticket();
 
         $sign = [
-            'appId' => $this->conf['app_id'],
+            'appId' => $this->extra['appid'],
             'nonceStr' => $nonce,
             'timestamp' => $timestamp,
             'signature' => $this->getSignature($ticket, $nonce, $timestamp, $url),
@@ -102,18 +104,47 @@ class Js extends Driver {
      */
     public function ticket(){
 
-        $cacheKey = "{$this->cacheKey}-{$this->conf['app_id']}";
-        $ticket = Yii::$app->cache->get($cacheKey);
-        if($ticket == false){
-            //  从服务器获取
-            $accessToken = (new AccessToken(['conf'=>$this->conf,'httpClient'=>$this->httpClient]))->getToken();
-            $response = $this->get(self::API_TICKET."?access_token={$accessToken}&type=jsapi")->send();
+        $key = $this->redisPrefix . $this->extra['appid'];
 
-            $data = $response->setFormat(Client::FORMAT_JSON)->getData();
-            $ticket = $data['ticket'];
-            Yii::$app->cache->set($cacheKey,$ticket,$data['expires_in']-600);
+        $field = 'js_ticket';
+
+        $redis = Yii::$app->redis;
+
+        $js_ticket = $redis->hget($key, $field);
+        $js_ticket_expire = $redis->hget($key, $field . "_expire");
+
+        if( time() > $js_ticket_expire || empty( $js_ticket ) ){
+
+            try{
+                // 从服务器获取
+                $response = $this->get(self::API_TICKET."?access_token={$this->accessToken}&type=jsapi")->send();
+
+                $data = $response->setFormat(Client::FORMAT_JSON)->getData();
+
+                $js_ticket = $data['ticket'];
+                $js_ticket_expire = time() + $data['expires_in'] - 60; // 过期前1分钟开始更新js票据
+
+                $hash = [
+                    $field => $js_ticket,
+                    ($field . "_expire") => (string)$js_ticket_expire,
+                ];
+    
+                foreach ($hash as $field => $value) {
+                    $redis->hset($key, $field, $value);
+                }
+
+                Yii::info("$key 授权公众号新js票据(".date('H:i:s', $js_ticket_expire).") $js_ticket" );
+
+                return $js_ticket;
+            }
+            catch(Exception $e){
+                throw new Exception("获取授权公众号新js票据异常: " . $e->getMessage());
+            }
+        }
+        else{
+            Yii::info("$key 授权公众号现有js票据(".date('H:i:s', $js_ticket_expire).") $js_ticket" );
         }
 
-        return $ticket;
+        return $js_ticket;
     }
 }

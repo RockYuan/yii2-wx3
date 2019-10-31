@@ -8,18 +8,17 @@
  * with this source code in the file LICENSE.
  */
 
-namespace rockyuan\wx3\mp\qrcode;
+namespace rockyuan\wx3\third\qrcode;
 
 use rockyuan\wx3\core\Driver;
-use rockyuan\wx3\core\AccessToken;
+use rockyuan\wx3\third\core\Authorization;
 use yii\httpclient\Client;
 
 /**
  * Qrcode
  * 二维码生成接口
- * @package rockyuan\wx3\mp\qrcode
- * @link https://nai8.me/yii2wx
- * @author abei<abei@nai8.me>
+ * @package rockyuan\wx3\third\qrcode
+ * 
  */
 class Qrcode extends Driver {
 
@@ -31,7 +30,7 @@ class Qrcode extends Driver {
     public function init()
     {
         parent::init();
-        $this->accessToken = (new AccessToken(['conf'=>$this->conf,'httpClient'=>$this->httpClient]))->getToken();
+        $this->accessToken = (new Authorization(['conf'=>$this->conf,'httpClient'=>$this->httpClient]))->getAuthToken($this->extra['appid']);
     }
 
     /**

@@ -62,7 +62,7 @@ class ComponentAccessToken extends Driver {
 
         if ( empty($ticket) ) {
             // ticket不存在 或 未送来
-            throw new Exception("ComponentVerifyTicket不存在");
+            throw new Exception("ComponentVerifyTicket 不存在");
         }
 
         return $ticket;

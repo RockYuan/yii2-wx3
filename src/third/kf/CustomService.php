@@ -13,7 +13,6 @@ namespace rockyuan\wx3\third\kf;
 
 use yii\httpclient\Client;
 use rockyuan\wx3\core\Driver;
-use rockyuan\wx3\core\AccessToken;
 use rockyuan\wx3\core\Exception;
 use rockyuan\wx3\third\core\Authorization;
 
@@ -31,7 +30,7 @@ class CustomService extends Driver {
 
     public function init(){
         parent::init();
-        $this->accessToken = (new Authorization())->getAuthToken($this->extra['appid']);
+        $this->accessToken = (new Authorization(['conf'=>$this->conf,'httpClient'=>$this->httpClient]))->getAuthToken($this->extra['appid']);
     }
 
     /**

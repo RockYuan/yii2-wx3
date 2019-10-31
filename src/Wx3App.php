@@ -54,28 +54,39 @@ class Wx3App extends Component {
             'componentAccessToken'=>'rockyuan\wx3\third\core\ComponentAccessToken',
             'authorization'=>'rockyuan\wx3\third\core\Authorization',
             'server'=>'rockyuan\wx3\third\server\Server',    // 服务接口
-            'customService'=>'rockyuan\wx3\third\kf\CustomService',//  群发
+            'template'=>'rockyuan\wx3\third\template\Template', // 消息模板
+            'customService'=>'rockyuan\wx3\third\kf\CustomService', // 客服消息(48h)
+            'kf'=>'rockyuan\wx3\third\kf\Kf', // 客服
+            'user'=>'rockyuan\wx3\third\user\User',  //  会员管理
+            'tag'=>'rockyuan\wx3\third\user\Tag',    //  会员标签
+            'remark'=>'rockyuan\wx3\third\user\Remark',  //  会员备注
+            'oauth'=>'rockyuan\wx3\third\oauth\OAuth', // web授权
+            'js'=>'rockyuan\wx3\third\js\Js',    //  JS
+            'qrcode'=>'rockyuan\wx3\third\qrcode\Qrcode',    // 二维码
+            'shorturl'=>'rockyuan\wx3\third\qrcode\Shorturl',    // 短地址
         ],
 
         'mp'=>[
             'accessToken'=>'rockyuan\wx3\mp\core\AccessToken',
-            'base'=>'rockyuan\wx3\mp\core\Base',    // 二维码
+            'base'=>'rockyuan\wx3\mp\core\Base',    // 获得微信回调服务器IP
             'qrcode'=>'rockyuan\wx3\mp\qrcode\Qrcode',    // 二维码
             'shorturl'=>'rockyuan\wx3\mp\qrcode\Shorturl',    // 短地址
             'server'=>'rockyuan\wx3\mp\server\Server',    // 服务接口
             'remark'=>'rockyuan\wx3\mp\user\Remark',  //  会员备注
             'user'=>'rockyuan\wx3\mp\user\User',  //  会员管理
             'tag'=>'rockyuan\wx3\mp\user\Tag',    //  会员标签
-            'menu'=>'rockyuan\wx3\mp\menu\Menu',  // 菜单
             'js'=>'rockyuan\wx3\mp\js\Js',    //  JS
             'template'=>'rockyuan\wx3\mp\template\Template', //   消息模板
+            'oauth'=>'rockyuan\wx3\mp\oauth\OAuth',//  web授权
+            'kf'=>'rockyuan\wx3\mp\kf\Kf',//  客服
+            'customService'=>'rockyuan\wx3\mp\kf\CustomService',//  群发
+
+            'menu'=>'rockyuan\wx3\mp\menu\Menu',  // 菜单
             'pay'=>'rockyuan\wx3\mp\payment\Pay',//  支付接口
             'mch'=>'rockyuan\wx3\mp\payment\Mch',//  企业付款
             'redbag'=>'rockyuan\wx3\mp\payment\Redbag',//  红包
-            'oauth'=>'rockyuan\wx3\mp\oauth\OAuth',//  web授权
             'resource'=>'rockyuan\wx3\mp\resource\Resource',//  素材
-            'kf'=>'rockyuan\wx3\mp\kf\Kf',//  客服
-            'customService'=>'rockyuan\wx3\mp\kf\CustomService',//  群发
+
         ],
 
         'mini'=>[

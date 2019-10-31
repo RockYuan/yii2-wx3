@@ -24,8 +24,10 @@ use rockyuan\wx3\core\Exception;
  */
 class OAuth extends Driver {
 
-    const API_AUTHORIZE_URL = "https://open.weixin.qq.com/connect/oauth2/authorize";
+    const API_AUTHORIZE_URL = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=*appid*&redirect_uri=*redirect*&response_type=code&scope=*scope*&state=*state*#wechat_redirect";
+
     const API_ACCESS_TOKEN_URL = "https://api.weixin.qq.com/sns/oauth2/access_token";
+
     const API_USER_INFO_URL = "https://api.weixin.qq.com/sns/userinfo";
 
     public $code = false;
@@ -48,8 +50,7 @@ class OAuth extends Driver {
      * 跳转到授权页面
      */
     public function send(){
-        $url = self::API_AUTHORIZE_URL."?appid={$this->conf['app_id']}&redirect_uri={$this->conf['oauth']['callback']}&response_type=code&scope={$this->conf['oauth']['scopes']}&state=STATE#wechat_redirect";
-        header("location:{$url}");
+        header( "location: " . $this->getUrl() );
     }
 
     /**
@@ -63,9 +64,13 @@ class OAuth extends Driver {
      * @since 20190921
      */
     public function getUrl(){
-        $url = self::API_AUTHORIZE_URL."?appid={$this->conf['app_id']}&redirect_uri={$this->conf['oauth']['callback']}&response_type=code&scope={$this->conf['oauth']['scopes']}&state=STATE#wechat_redirect";
+        $search = ['*appid*', '*redirect*', '*scope*', '*state*'];
 
-        return $url;
+        $replace = [ $this->conf['app_id'], $this->extra['redirect'], $this->extra['scope'], $this->extra['state'] ];
+
+        $authUrl = str_replace($search, $replace, self::API_AUTHORIZE_URL);
+
+        return $authUrl;
     }
 
     /**

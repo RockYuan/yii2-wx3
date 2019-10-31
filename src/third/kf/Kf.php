@@ -12,16 +12,14 @@
 namespace rockyuan\wx3\mp\kf;
 
 use rockyuan\wx3\core\Driver;
-use rockyuan\wx3\core\AccessToken;
 use yii\httpclient\Client;
 use rockyuan\wx3\core\Exception;
+use rockyuan\wx3\third\core\Authorization;
 
 /**
  * 客服助手
  *
- * @author abei<abei@nai8.me>
- * @link https://nai8.me/yii2wx
- * @package rockyuan\wx3\mp\kf
+ * @package rockyuan\wx3\third\kf
  */
 class Kf extends Driver {
 
@@ -89,7 +87,7 @@ class Kf extends Driver {
 
     public function init(){
         parent::init();
-        $this->accessToken = (new AccessToken(['conf'=>$this->conf,'httpClient'=>$this->httpClient]))->getToken();
+        $this->accessToken = (new Authorization(['conf'=>$this->conf,'httpClient'=>$this->httpClient]))->getAuthToken($this->extra['appid']);
     }
 
     /**
