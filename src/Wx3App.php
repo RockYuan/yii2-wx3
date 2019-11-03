@@ -64,6 +64,11 @@ class Wx3App extends Component {
             'js'=>'rockyuan\wx3\third\js\Js',    //  JS
             'qrcode'=>'rockyuan\wx3\third\qrcode\Qrcode',    // 二维码
             'shorturl'=>'rockyuan\wx3\third\qrcode\Shorturl',    // 短地址
+            'pay'=>'rockyuan\wx3\third\payment\Pay',//  支付接口
+            'mch'=>'rockyuan\wx3\third\payment\Mch',//  企业付款
+            'redbag'=>'rockyuan\wx3\third\payment\Redbag',//  红包
+            'menu'=>'rockyuan\wx3\third\menu\Menu',  // 菜单
+            'resource'=>'rockyuan\wx3\third\resource\Resource',//  素材
         ],
 
         'mp'=>[
@@ -80,11 +85,10 @@ class Wx3App extends Component {
             'oauth'=>'rockyuan\wx3\mp\oauth\OAuth',//  web授权
             'kf'=>'rockyuan\wx3\mp\kf\Kf',//  客服
             'customService'=>'rockyuan\wx3\mp\kf\CustomService',//  群发
-
-            'menu'=>'rockyuan\wx3\mp\menu\Menu',  // 菜单
             'pay'=>'rockyuan\wx3\mp\payment\Pay',//  支付接口
             'mch'=>'rockyuan\wx3\mp\payment\Mch',//  企业付款
             'redbag'=>'rockyuan\wx3\mp\payment\Redbag',//  红包
+            'menu'=>'rockyuan\wx3\mp\menu\Menu',  // 菜单
             'resource'=>'rockyuan\wx3\mp\resource\Resource',//  素材
 
         ],
