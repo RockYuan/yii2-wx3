@@ -94,8 +94,8 @@ class Server extends Driver {
         $response = $this->handleMessage($message);
 
         return [
-            'to'=>$message['FromUserName'],
-            'from'=>$message['ToUserName'],
+            'to'=> ( empty($message['FromUserName']) ? '' : $message['FromUserName'] ),
+            'from'=> ( empty($message['ToUserName']) ? '' : $message['ToUserName'] ),
             'response'=>$response
         ];
     }
