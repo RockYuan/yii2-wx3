@@ -35,7 +35,7 @@ class Template extends Driver {
     /**
      * 发送一个模板消息
      */
-    public function send($openId,$templateId,$url,$data){
+    public function send($openId,$templateId,$url,$data, $miniprogram = null){
         $formatData = [];
         foreach($data as $key=>$val){
             if(is_string($val)){
@@ -55,6 +55,10 @@ class Template extends Driver {
             'url'=>$url,
             'data'=>$formatData
         ];
+
+        if ( is_array($miniprogram) ){
+            $params['miniprogram'] = $miniprogram;
+        }
 
         $response = $this->post(self::API_SEND_TEMPLATE_URL."?access_token=".$this->accessToken,$params)
             ->setFormat(Client::FORMAT_JSON)->send();
